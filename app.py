@@ -6,7 +6,7 @@ from io import BytesIO
 
 st.set_page_config(page_title="Graph Slope Detector", layout="centered")
 
-st.title("📊 Roadside Ditch Graph Slope Detector")
+st.title("Roadside Ditch Graph Slope Detector")
 st.write("Upload your graph image and get slope distances in meters.")
 
 uploaded_file = st.file_uploader("Upload Graph Image", type=["jpg", "jpeg", "png"])
@@ -53,13 +53,13 @@ if uploaded_file:
     # Slope distances
     slopes_data = []
     for i in range(1, len(slope_points)):
-        x1, y1 = slope_points[i-1]
+        x1, y1 = slope_points[i - 1]
         x2, y2 = slope_points[i]
         dx = abs(x2 - x1)
         dy = abs(y2 - y1)
         if dx > 5 or dy > 5:
             slopes_data.append({
-                "Slope No.": len(slopes_data)+1,
+                "Slope No.": len(slopes_data) + 1,
                 "X Distance (px)": dx,
                 "Y Difference (px)": dy,
                 "X Distance (m)": round(dx / pixels_per_meter_x, 2),
@@ -68,18 +68,17 @@ if uploaded_file:
 
     if slopes_data:
         df = pd.DataFrame(slopes_data)
-        st.subheader("📑 Calculated Slopes")
+        st.subheader("Calculated Slopes")
         st.dataframe(df)
 
         csv = df.to_csv(index=False).encode('utf-8')
         st.download_button(
-            label="📥 Download CSV Report",
+            label="Download CSV Report",
             data=csv,
             file_name='slope_distances_report.csv',
             mime='text/csv'
         )
     else:
         st.warning("No slopes detected in the uploaded image.")
-
 else:
     st.info("Please upload a graph image to get started.")
