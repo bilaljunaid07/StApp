@@ -2,7 +2,9 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-image = cv2.imread("your_graph_image.jpg")  # Replace with your file path
+#image = cv2.imread("your_graph_image.jpg")  # Replace with your file path
+file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+image = cv2.imdecode(file_bytes, 1)
 resized = cv2.resize(image, (900, 500))
 
 gray = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
