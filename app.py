@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 #ifrom PIL import Image
 
-st.set_page_config(page_title="Graph Edge Detector", layout="centered")
+#st.set_page_config(page_title="Graph Edge Detector", layout="centered")
+
 st.title("Graph Edge Detector")
 
 uploaded_file = st.file_uploader("Upload a Graph Image", type=["jpg", "jpeg", "png"])
