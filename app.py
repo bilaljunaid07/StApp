@@ -1,10 +1,22 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+from PIL import Image
+#ifrom PIL import Image
 
-#image = cv2.imread("your_graph_image.jpg")  # Replace with your file path
-file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-image = cv2.imdecode(file_bytes, 1)
+st.set_page_config(page_title="Graph Edge Detector", layout="centered")
+st.title("Graph Edge Detector")
+
+uploaded_file = st.file_uploader("Upload a Graph Image", type=["jpg", "jpeg", "png"])
+
+if uploaded_file is not None:
+    # Read image as bytes and decode using OpenCV
+    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+    image = cv2.imdecode(file_bytes, 1)
+
+    if image is None:
+        st.error("Could not decode the image. Please upload a valid image.")
+        st.stop()
 resized = cv2.resize(image, (900, 500))
 
 gray = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
