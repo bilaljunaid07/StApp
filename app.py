@@ -1,11 +1,15 @@
 import streamlit as st
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
+import pandas as pd
+from PIL import Image
+
+
 
 st.set_page_config(page_title="Roadside Ditch Graph Visualizer", layout="centered")
 
-st.title("📊 Roadside Ditch Graph Visualizer")
+st.title("Roadside Ditch Graph Visualizer")
+
 st.write("Upload your graph image. This tool will detect slopes and show X and Y distances on a clean graph.")
 
 uploaded_file = st.file_uploader("Upload Graph Image", type=["jpg", "jpeg", "png"])
